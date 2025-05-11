@@ -1,0 +1,24 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0g315aunsp1bris6beg",
+    "operations": [
+      {
+        "add_column": {
+          "table": "products",
+          "column": {
+            "name": "benefitLists",
+            "type": "text[]",
+            "comment": "",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0g315aunsp1bris6beg",
+  "parent": "mig_d0g309aunsp1bris6bag",
+  "schema": "public",
+  "startedAt": "2025-05-11T05:07:34.155677Z"
+}

@@ -7,13 +7,13 @@ const MainProduct = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const paragraphs = [
-    `Introducing Glow Essence Radiance Serum, a luxurious addition to your skincare routine that redefines beauty with every drop. Crafted with a potent blend of nature’s finest ingredients, this lightweight, fast-absorbing serum is designed to hydrate, brighten, and rejuvenate your skin, delivering a radiant, youthful glow that turns heads. Perfect for all skin types, Glow Essence is your daily dose of luminosity, transforming dull, tired complexions into vibrant, dewy masterpieces.`,
-    `At the heart of Glow Essence lies a powerful trio of active ingredients: Hyaluronic Acid, Vitamin C, and Niacinamide. Hyaluronic Acid deeply hydrates, plumping the skin to smooth fine lines and restore elasticity. Vitamin C, a renowned antioxidant, brightens dark spots, evens skin tone, and protects against environmental stressors like pollution and UV damage. Niacinamide works to minimize pores, reduce redness, and strengthen the skin’s barrier, ensuring a flawless, balanced complexion. Infused with soothing Aloe Vera and nourishing Rosehip Oil, this serum calms irritation while promoting cell regeneration for a soft, supple finish.`,
+    `Introducing AQUA RICH body gel wash & lotion, a luxurious addition to your skincare routine that redefines beauty with every drop. Crafted with a potent blend of nature’s finest ingredients, this lightweight, fast-absorbing serum is designed to hydrate, brighten, and transform your skin, delivering a radiant, youthful glow that captivates. Perfect for all skin types, Aqua rich is your daily dose of luminosity, revitalizing dull, uneven complexions into vibrant, flawless masterpieces. Experience five key benefits: reduced hyperpigmentation, evened skin tone, strengthened skin barrier, diminished redness, and faded dark spots.`,
+    `At the heart of aqua rich lies a powerful trio of active ingredients: Niacinamide, Alpha Arbutin, and Tranexamic Acid. Niacinamide strengthens the skin’s barrier, reduces redness, and minimizes pore appearance for a smooth, balanced complexion. Alpha Arbutin fades dark spots and promotes an even skin tone, revealing a luminous, uniform glow. Tranexamic Acid brightens the skin and diminishes hyperpigmentation, tackling discoloration for a radiant finish.`,
   ];
 
   return (
     <div className="mx-auto md:w-[860px] py-7 flex flex-col gap-5 px-4">
-      <h1 className="text-center text-2xl">Name of Main Product</h1>
+      {/* <h1 className="text-center text-2xl">Name of Main Product</h1> */}
       <div className="grid md:grid-cols-[1fr_2fr] gap-6 items-start">
         <Image
           src={creamPhoto}
@@ -24,8 +24,7 @@ const MainProduct = () => {
         />
 
         <div className="flex flex-col gap-6">
-          <h2 className="text-5xl">Product Name</h2>
-
+          <h2 className="text-5xl">AQUA RICH</h2>
           <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={isExpanded ? "expanded" : "collapsed"}

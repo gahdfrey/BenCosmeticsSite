@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0g309aunsp1bris6bag",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "products",
+          "column": "keyIngredients"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0g309aunsp1bris6bag",
+  "parent": "mig_d0fqdsar9e9qaqkp162g",
+  "schema": "public",
+  "startedAt": "2025-05-11T05:05:42.305064Z"
+}

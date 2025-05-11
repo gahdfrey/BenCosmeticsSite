@@ -1,0 +1,25 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0fnh6ido80pli9qni90",
+    "operations": [
+      {
+        "add_column": {
+          "table": "products",
+          "column": {
+            "name": "cardIngredients",
+            "type": "text",
+            "comment": "",
+            "default": "'Niacinamide + Alpha Arbutin + Tranexamic Acid'",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0fnh6ido80pli9qni90",
+  "parent": "mig_d0fl4gado80pli9qnhr0",
+  "schema": "public",
+  "startedAt": "2025-05-10T16:02:35.097468Z"
+}

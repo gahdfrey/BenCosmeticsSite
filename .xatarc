@@ -1,0 +1,8 @@
+{
+  "databaseURL": "https://gahdfrey-s-workspace-2v6fmg.us-east-1.xata.sh/db/ben-cosmetic-db",
+  "codegen": {
+    "output": "src/lib/xata.js",
+    "moduleType": "esm",
+    "declarations": true
+  }
+}

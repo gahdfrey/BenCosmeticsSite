@@ -1,16 +1,15 @@
-import { useRouter } from "next/router";
+// Remove this line since we're not using it
+// import { useRouter } from "next/router";
 import Image from "next/image";
-import { TAB_DATA, SHARED_FEATURES } from "../../../config/constants";
+import { SHARED_FEATURES } from "../../../config/constants";
+import { getXataClient } from "../../lib/xata";
+import { ProductsRecord } from "@/lib/types";
 
-export default function ProductPage() {
-  const router = useRouter();
-  const { "product-id": productId } = router.query;
+interface ProductPageProps {
+  product: ProductsRecord;
+}
 
-  // Find the product from TAB_DATA based on the URL
-  const product = TAB_DATA.find(
-    (item) => item.link.split("/").pop() === productId
-  );
-
+export default function ProductPage({ product }: ProductPageProps) {
   if (!product) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -26,8 +25,8 @@ export default function ProductPage() {
           {/* Product Image */}
           <div className="relative h-[400px] md:h-[600px]">
             <Image
-              src={product.image}
-              alt={product.heading}
+              src={product.image || ""}
+              alt={product.heading || ""}
               fill
               className="object-contain rounded-lg"
               priority
@@ -45,39 +44,44 @@ export default function ProductPage() {
             <div className="mt-6">
               <h2 className="text-2xl font-medium mb-4">About this product</h2>
               <p className="text-gray-700 leading-relaxed">
-                {product.description.fullDescription}
+                {product.fullDescription}
               </p>
             </div>
 
-            {/* Key Ingredients */}
-            <div className="mt-6">
-              <h2 className="text-xl font-medium mb-3">Key Ingredients</h2>
-              <ul className="list-disc list-inside space-y-2">
-                {product.description.keyIngredients.map((ingredient, index) => (
-                  <li key={index} className="text-gray-700">
-                    {ingredient}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Benefits */}
-            <div className="mt-6">
-              <h2 className="text-xl font-medium mb-3">Benefits</h2>
-              <ul className="list-disc list-inside space-y-2">
-                {product.description.benefits.map((benefit, index) => (
-                  <li key={index} className="text-gray-700">
-                    {benefit}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {product?.benefitLists && (
+              <div className="mt-6">
+                <h2 className="text-xl font-medium mb-3">Benefits</h2>
+                <ul className="list-disc list-inside space-y-2">
+                  {product?.benefitLists.map((benefit, index) => (
+                    <li key={index} className="text-gray-700">
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* How to Use */}
-            <div className="mt-6">
-              <h2 className="text-xl font-medium mb-3">How to Use</h2>
-              <p className="text-gray-700">{product.description.howToUse}</p>
-            </div>
+            {product?.howToApply && (
+              <div className="mt-6">
+                <h2 className="text-xl font-medium mb-3">How to Use</h2>
+                <p className="text-gray-700">{product?.howToApply}</p>
+              </div>
+            )}
+
+            {product?.ingredients && (
+              <div className="mt-6">
+                <h2 className="text-2xl font-medium mb-4">Key Ingredients</h2>
+                <ul className="list-disc list-inside space-y-2">
+                  {product.ingredients.map((ingredient, index) => (
+                    <li key={index} className="text-gray-700 leading-relaxed">
+                      {ingredient.trim()}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Shared Features */}
             <div className="mt-6 p-4 bg-gray-50 rounded-lg">
@@ -97,4 +101,46 @@ export default function ProductPage() {
       </div>
     </div>
   );
+}
+
+export async function getStaticPaths() {
+  const xata = getXataClient();
+  const { records: products } = await xata.db.products.getPaginated({
+    pagination: { size: 100 },
+  });
+
+  const paths = products.map((product) => ({
+    params: { "product-id": product.xata_id },
+  }));
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { "product-id": string };
+}) {
+  const xata = getXataClient();
+  const product = await xata.db.products.read(params["product-id"]);
+
+  if (!product) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      product: {
+        ...product,
+        xata_createdat: product.xata_createdat?.toISOString(),
+        xata_updatedat: product.xata_updatedat?.toISOString(),
+      },
+    },
+    revalidate: 60, // Revalidate every 60 seconds
+  };
 }

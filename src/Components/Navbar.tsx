@@ -3,10 +3,16 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_ITEMS, TAB_DATA } from "../../config/constants";
 import MobileMenu from "./MobileMenu";
+import { ProductsRecord } from "@/lib/types";
+import { NAV_ITEMS } from "../../config/constants";
+import Image from "next/image";
 
-const NavBar = () => {
+interface NavBarProps {
+  products?: ProductsRecord[];
+}
+
+const NavBar = ({ products = [] }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -16,9 +22,17 @@ const NavBar = () => {
         {/* Logo on the left */}
         <Link
           href="/"
-          className={`z-60 ${isOpen ? "text-white" : "text-black"}`}
+          className={`z-60 ${
+            isOpen ? "text-white" : "text-black"
+          } flex items-center`}
         >
-          dleventh
+          <Image
+            src="/logo.jpg"
+            alt={"Ben Cosmetics Logo"}
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -86,10 +100,10 @@ const NavBar = () => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {TAB_DATA.map((product, idx) => (
+                      {products.map((product, idx) => (
                         <Link
                           key={idx}
-                          href={product.link}
+                          href={`/products/${product.xata_id}`}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         >
                           {product.heading}
@@ -140,7 +154,7 @@ const NavBar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} products={products} />
     </nav>
   );
 };

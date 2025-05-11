@@ -5,6 +5,11 @@ import NavBar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 import { useEffect } from "react";
 import { initSmoothScroll } from "@/utils/smoothScroll";
+import { ProductsRecord } from "@/lib/types";
+
+interface CustomPageProps {
+  products?: ProductsRecord[];
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,14 +21,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<CustomPageProps>) {
   useEffect(() => {
     initSmoothScroll();
   }, []);
 
   return (
     <main className={`${geistSans.variable} ${geistMono.variable}`}>
-      <NavBar />
+      <NavBar products={pageProps.products} />
       <Component {...pageProps} />
       <Footer />
     </main>

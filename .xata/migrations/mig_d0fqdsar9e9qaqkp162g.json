@@ -1,0 +1,25 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0fqdsar9e9qaqkp162g",
+    "operations": [
+      {
+        "add_column": {
+          "table": "products",
+          "column": {
+            "name": "ingredients",
+            "type": "text[]",
+            "comment": "",
+            "default": "'{first one}'",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0fqdsar9e9qaqkp162g",
+  "parent": "mig_d0fnh6ido80pli9qni90",
+  "schema": "public",
+  "startedAt": "2025-05-10T19:20:18.036459Z"
+}

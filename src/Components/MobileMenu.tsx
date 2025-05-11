@@ -3,14 +3,16 @@
 import React from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_ITEMS, TAB_DATA } from "../../config/constants";
+import { NAV_ITEMS } from "../../config/constants";
+import { ProductsRecord } from "@/lib/types";
 
 interface MobileMenuProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  products?: ProductsRecord[]; // Add products prop
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen, products = [] }) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   const menuVariants = {
@@ -125,7 +127,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen }) => {
                         animate="open"
                         exit="closed"
                       >
-                        {TAB_DATA.map((product, idx) => (
+                        {products.map((product, idx) => (
                           <motion.div
                             key={idx}
                             custom={idx}
@@ -135,7 +137,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen }) => {
                             exit="closed"
                           >
                             <Link
-                              href={product.link}
+                              href={`/products/${product.xata_id}`}
                               className="text-white text-lg hover:text-blue-300"
                               onClick={() => setIsOpen(false)}
                             >

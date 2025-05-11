@@ -1,15 +1,16 @@
 "use client";
 
 import React, { useState, useRef, useLayoutEffect } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Link from "next/link";
-import { TAB_DATA } from "../../../config/constants";
 
 interface Tab {
   heading: string;
   title: string;
-  image: StaticImageData;
+  image: string;
   link: string;
+  cardIngredients: string;
+  xata_id?: string; // Add xata_id to the interface
 }
 
 interface TabsProps {
@@ -70,7 +71,7 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
       <div className="w-full max-w-4xl mx-auto py-4 md:py-8">
         {/* Mobile: List all cards with entrance animation */}
         <div className="md:hidden flex flex-col gap-6">
-          {TAB_DATA.map((tab, index) => (
+          {tabs.map((tab, index) => (
             <div
               key={index}
               className="bg-[#F6FAF3] rounded-lg shadow-lg p-4 flex flex-col gap-4 animate-mobile-card"
@@ -94,8 +95,8 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
                 />
               </div>
               <Link
-                href={tab.link}
-                className="px-5 py-2 bg-[#AE8625] text-white rounded-md hover:bg-[#906b1d]  transition-colors duration-200 text-sm self-start"
+                href={`/products/${tab.xata_id}`}
+                className="px-5 py-2 bg-[#AE8625] text-white rounded-md hover:bg-[#906b1d] transition-colors duration-200 text-sm self-start"
               >
                 Learn More
               </Link>
@@ -116,10 +117,13 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
               <h2 className="font-medium text-[#22263F] w-[345.11px] text-[35.9px] leading-tight md:leading-[100%] tracking-[-2%]">
                 {tabs[activeTab].title}
               </h2>
+              <h2 className="font-medium text-[#828282] text-[20.9px] leading-[100%] tracking-[-2%] w-[255.11px] mt-6">
+                {tabs[activeTab].cardIngredients}
+              </h2>
             </span>
             <Link
-              href={tabs[activeTab].link}
-              className="px-4 py-1 md:px-5 md:py-2 bg-[#AE8625] text-white rounded-md hover:bg-[#906b1d]  transition-colors duration-200 text-xs md:text-sm self-center md:self-start"
+              href={`/products/${tabs[activeTab].xata_id}`}
+              className="px-4 py-1 md:px-5 md:py-2 bg-[#AE8625] text-white rounded-md hover:bg-[#906b1d] transition-colors duration-200 text-xs md:text-sm self-center md:self-start"
             >
               Learn More
             </Link>
