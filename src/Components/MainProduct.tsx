@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import creamPhoto from "../../public/creamPhoto.jpeg";
+import creamPhoto from "../../public/background.jpeg";
 
 const MainProduct = () => {
   const [isExpanded, setIsExpanded] = useState(false);

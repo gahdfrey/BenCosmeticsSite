@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Hero = () => {
-  // Remove the individual scroll handler since we'll handle this globally
   return (
     <div className="relative w-full text-white" id="hero">
       {/* Background Image */}
@@ -27,10 +26,10 @@ const Hero = () => {
         {/* Hero Section */}
         <div className="container mx-auto px-4 min-h-[calc(628px-64px)] flex flex-col justify-center items-center text-center">
           <div className="md:max-w-4xl">
-            <h1 className="mb-6 md:text-6xl md:w-[636px] md:mx-auto md:leading-[82px] text-2xl">
+            <h1 className="mb-6 md:text-6xl md:w-[636px] md:mx-auto md:leading-[82px] text-2xl font-cursive">
               AQUA RICH
             </h1>
-            <p className="mb-8 md:w-[860px] md:text-[22px] md:leading-[38px] text-xl">
+            <p className="mb-8 md:w-[860px] md:text-[22px] md:leading-[38px] text-xl font-cursive">
               Glow Your Way – Beauty That Shines!
             </p>
             <motion.a

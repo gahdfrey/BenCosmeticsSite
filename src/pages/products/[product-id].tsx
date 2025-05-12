@@ -28,8 +28,9 @@ export default function ProductPage({ product }: ProductPageProps) {
               src={product.image || ""}
               alt={product.heading || ""}
               fill
-              className="object-contain rounded-lg"
-              priority
+              className="object-contain rounded-md"
+              priority={true}
+              loading="eager"
             />
           </div>
 
