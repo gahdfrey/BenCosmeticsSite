@@ -87,11 +87,18 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
                   </h2>
                 </span>
                 <Image
-                  src={tab.image}
+                  src={`${tab.image}?f_auto,q_auto,w_1200`}
                   alt={tab.heading}
                   width={600}
                   height={300}
+                  priority={true}
+                  loading="eager"
+                  sizes="(max-width: 768px) 100vw, 1200px"
                   className="object-contain rounded-md w-full h-full"
+                  onError={(e) => {
+                    console.error("Image load error:", e);
+                    (e.target as HTMLImageElement).src = "/placeholder.jpg";
+                  }}
                 />
               </div>
               <Link
@@ -128,14 +135,23 @@ const Tabs = ({ tabs, defaultTab = 0 }: TabsProps) => {
               Learn More
             </Link>
           </div>
-          <div className="mt-4 md:mt-0 md:absolute md:top-[35px] md:right-[-5px] w-full md:w-[500px] h-[200px] md:h-[600px]">
-            <Image
-              src={tabs[activeTab].image}
-              alt={tabs[activeTab].heading}
-              width={600}
-              height={300}
-              className="object-contain rounded-md w-full h-full"
-            />
+          {/* Image Container */}
+          <div className="mt-4 md:mt-0 md:absolute md:bottom-[-20px] md:right-[-20px] w-full md:w-[400px] h-[200px] md:h-[450px] rounded-lg overflow-hidden">
+            <div className="relative w-full h-full">
+              <Image
+                src={tabs[activeTab].image}
+                alt={tabs[activeTab].heading}
+                fill
+                className="object-cover rounded-lg"
+                style={{ borderRadius: "8px" }} // Fallback inline style
+                sizes="(max-width: 768px) 100vw, 400px"
+                priority={true}
+                onError={(e) => {
+                  console.error("Image load error:", e);
+                  (e.target as HTMLImageElement).src = "/placeholder.jpg";
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

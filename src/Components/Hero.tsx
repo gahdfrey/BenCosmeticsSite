@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import creamPhoto from "../../public/creamPhoto.jpeg";
+import creamPhoto from "../../public/IMG_3010 2.jpeg";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -19,7 +19,7 @@ const Hero = () => {
       />
 
       {/* Black Overlay */}
-      <div className="absolute inset-0 bg-black opacity-60 z-10" />
+      <div className="absolute inset-0 bg-black opacity-40 z-10" />
 
       {/* Content */}
       <div className="relative z-10">

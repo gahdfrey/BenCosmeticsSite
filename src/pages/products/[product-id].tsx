@@ -23,12 +23,14 @@ export default function ProductPage({ product }: ProductPageProps) {
       <div className="container mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Product Image */}
-          <div className="relative h-[400px] md:h-[600px]">
+          <div className="relative h-[400px] md:h-[600px] rounded-lg overflow-hidden">
             <Image
               src={product.image || ""}
               alt={product.heading || ""}
               fill
-              className="object-contain rounded-md"
+              className="object-cover rounded-lg"
+              style={{ borderRadius: "8px" }} // Fallback inline style
+              sizes="(max-width: 768px) 100vw, 50vw"
               priority={true}
               loading="eager"
             />

@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0g3j9ado80pli9qnmq0",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "products",
+          "column": "benefits"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0g3j9ado80pli9qnmq0",
+  "parent": "mig_d0g3j02r9e9qaqkp17pg",
+  "schema": "public",
+  "startedAt": "2025-05-11T05:46:14.584689Z"
+}

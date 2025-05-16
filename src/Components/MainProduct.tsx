@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import creamPhoto from "../../public/background.jpeg";
+import creamPhoto from "../../public/IMG_3020.jpeg";
 
 const MainProduct = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -12,7 +12,7 @@ const MainProduct = () => {
   ];
 
   return (
-    <div className="mx-auto md:w-[860px] py-7 flex flex-col gap-5 px-4">
+    <div className="mx-auto md:w-[860px] py-7 flex flex-col gap-5 px-4 my-[4rem]">
       {/* <h1 className="text-center text-2xl">Name of Main Product</h1> */}
       <div className="grid md:grid-cols-[1fr_2fr] gap-6 items-start">
         <Image

@@ -1,0 +1,19 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d0g3peir9e9qaqkp17v0",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "products",
+          "column": "picture"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d0g3peir9e9qaqkp17v0",
+  "parent": "mig_d0g3nt2do80pli9qnmr0",
+  "schema": "public",
+  "startedAt": "2025-05-11T05:59:23.452206Z"
+}
