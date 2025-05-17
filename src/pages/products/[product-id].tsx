@@ -20,10 +20,10 @@ export default function ProductPage({ product }: ProductPageProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="container mx-auto px-4 py-8">
+      <div className="md:w-[860px] mx-auto px-4 py-8">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Product Image */}
-          <div className="relative h-[400px] md:h-[600px] rounded-lg overflow-hidden">
+          <div className="relative h-[300px] md:h-[400px] rounded-lg overflow-hidden w-[180px] md:w-[300px]">
             <Image
               src={product.image || ""}
               alt={product.heading || ""}

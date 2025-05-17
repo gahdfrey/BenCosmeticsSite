@@ -30,8 +30,8 @@ const SubProducts = ({ products }: SubProductsProps) => {
         {/* Subheading */}
         <span className="w-full max-w-[90vw] md:w-[860px] mx-auto">
           <h2 className="font-medium text-base md:text-[22px] leading-6 md:leading-[38px] text-center text-gray-700 md:text-[#22263F]">
-            Discover Your Perfect Glow: 4 Radiant Variants of Aqua Rich Body
-            Wash!
+            Discover Your Perfect Glow: {products.length} Radiant Variants of
+            Aqua Rich Body Wash!
           </h2>
         </span>
 
