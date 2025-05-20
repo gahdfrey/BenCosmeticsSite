@@ -55,7 +55,6 @@
 //     </div>
 //   );
 // };
-
 // export default MainProduct;
 
 import React, { useState, useRef } from "react";
@@ -113,10 +112,14 @@ const MainProduct = () => {
             alt="Main product"
             fill
             className="object-cover rounded-lg"
-            style={{ borderRadius: "8px" }} // Fallback inline style
+            style={{ 
+              borderRadius: "8px",
+              transform: "none",
+              objectFit: "cover"
+            }}
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={true}
-            transform-none="true"
+            quality={100}
           />
         </motion.div>
 
