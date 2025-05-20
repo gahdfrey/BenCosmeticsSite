@@ -12,7 +12,11 @@ interface MobileMenuProps {
   products?: ProductsRecord[]; // Add products prop
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen, products = [] }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({
+  isOpen,
+  setIsOpen,
+  products = [],
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
   const menuVariants = {
@@ -83,10 +87,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, setIsOpen, products = [
                     onClick={(e) => {
                       if (item.href.startsWith("#")) {
                         e.preventDefault();
-                        const element = document.querySelector(item.href);
-                        if (element) {
-                          element.scrollIntoView({ behavior: "smooth" });
-                          setIsOpen(false);
+                        if (window.location.pathname !== "/") {
+                          // Navigate to home page first, then scroll to the section
+                          window.location.href = "/" + item.href;
+                        } else {
+                          const element = document.querySelector(item.href);
+                          if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                            setIsOpen(false);
+                          }
                         }
                       }
                     }}
