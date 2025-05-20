@@ -100,7 +100,7 @@ const MainProduct = () => {
       ref={ref}
       className="mx-auto md:w-[860px] py-7 flex flex-col gap-5 px-4 my-[4rem]"
     >
-      <div className="grid md:grid-cols-[1fr_2fr] gap-6 items-start">
+      <div className="grid md:grid-cols-[1fr_2fr] gap-6 items-start w-full overflow-hidden">
         {/* Image with Slide-in Animation and Rounded Edges */}
         <motion.div
           variants={imageVariants}
