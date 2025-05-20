@@ -12,6 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+img, image {
+  image-orientation: from-image !important;
+  transform: none !important;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
