@@ -116,6 +116,7 @@ const MainProduct = () => {
             style={{ borderRadius: "8px" }} // Fallback inline style
             sizes="(max-width: 768px) 100vw, 33vw"
             priority={true}
+            transform-none
           />
         </motion.div>
 

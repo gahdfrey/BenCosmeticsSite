@@ -16,6 +16,17 @@ const NavBar = ({ products = [] }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Get the current product ID from the URL
+  const currentProductId =
+    typeof window !== "undefined"
+      ? window.location.pathname.split("/products/")[1]
+      : "";
+
+  // Filter out the current product from the dropdown list
+  const filteredProducts = products.filter(
+    (product) => product.xata_id !== currentProductId
+  );
+
   return (
     <nav className="sticky top-0 z-50  px-4 py-4  bg-white shadow-md">
       <div className="flex items-center justify-between">
@@ -40,7 +51,7 @@ const NavBar = ({ products = [] }: NavBarProps) => {
           {NAV_ITEMS.map((item, index) => (
             <div
               key={index}
-              className="relative"
+              className="relative group"
               onMouseEnter={() =>
                 item.text === "Products" && setIsHovered(true)
               }
@@ -51,20 +62,22 @@ const NavBar = ({ products = [] }: NavBarProps) => {
               <motion.div
                 whileHover={{ scale: 1.05, color: "#93C5FD" }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="flex items-center"
+                className="flex items-center cursor-pointer"
               >
                 <Link
-                  href={item.href.startsWith("#") ? "/" + item.href : item.href}
-                  className="text-[16px] text-black"
+                  href={item.href}
+                  className="text-black text-xl font-medium hover:text-[#93C5FD]"
                   onClick={(e) => {
                     if (item.href.startsWith("#")) {
                       e.preventDefault();
                       if (window.location.pathname !== "/") {
+                        // Navigate to home page first, then scroll to the section
                         window.location.href = "/" + item.href;
                       } else {
                         const element = document.querySelector(item.href);
                         if (element) {
                           element.scrollIntoView({ behavior: "smooth" });
+                          setIsOpen(false);
                         }
                       }
                     }
@@ -74,7 +87,7 @@ const NavBar = ({ products = [] }: NavBarProps) => {
                 </Link>
                 {item.text === "Products" && (
                   <svg
-                    className="ml-1 w-4 h-4 text-black"
+                    className="ml-1 w-4 h-4 text-black group-hover:text-[#93C5FD]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -100,7 +113,7 @@ const NavBar = ({ products = [] }: NavBarProps) => {
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {products.map((product, idx) => (
+                      {filteredProducts.map((product, idx) => (
                         <Link
                           key={idx}
                           href={`/products/${product.xata_id}`}
@@ -154,7 +167,12 @@ const NavBar = ({ products = [] }: NavBarProps) => {
       </div>
 
       {/* Mobile Menu */}
-      <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} products={products} />
+      {/* Mobile Menu - Pass filtered products */}
+      <MobileMenu
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        products={filteredProducts}
+      />
     </nav>
   );
 };

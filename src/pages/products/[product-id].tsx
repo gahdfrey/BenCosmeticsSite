@@ -33,6 +33,7 @@ export default function ProductPage({ product }: ProductPageProps) {
               sizes="(max-width: 768px) 100vw, 50vw"
               priority={true}
               loading="eager"
+              transform-none
             />
           </div>
 
